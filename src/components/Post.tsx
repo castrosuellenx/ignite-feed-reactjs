@@ -28,8 +28,8 @@ export function Post({author, publishedAt, content}: Props) {
     addSuffix: true,
   });
 
-  function handleCreateNewComment(event: React.FormEvent<HTMLFormElement>) {
-    event?.preventDefault();
+  function handleCreateNewComment(event: React.FormEvent) {
+    event.preventDefault();
 
     setComments((prevState) => [...prevState, newCommentText]);
     setNewCommentText('');
@@ -43,11 +43,9 @@ export function Post({author, publishedAt, content}: Props) {
   }
 
   function handleNewCommentInvalid(
-    event: React.FormEvent<HTMLTextAreaElement>
+    event: React.InvalidEvent<HTMLTextAreaElement>
   ) {
-    (event.target as HTMLTextAreaElement).setCustomValidity(
-      'Esse campo é obrigatório'
-    );
+    event.target.setCustomValidity('Esse campo é obrigatório');
   }
 
   function deleteComment(commentToDelete: string) {
