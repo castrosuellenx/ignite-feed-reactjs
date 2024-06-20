@@ -1,19 +1,15 @@
 import styles from './Avatar.module.css';
 
 export function Avatar({
-  src,
-  alt,
   hasBorder = true,
+  ...rest
 }: {
-  src: string;
-  alt: string;
   hasBorder?: boolean;
-}) {
+} & React.ImgHTMLAttributes<HTMLImageElement>) {
   return (
     <img
       className={hasBorder ? styles.avatarWithBorder : styles.avatar}
-      src={src}
-      alt={alt}
+      {...rest}
     />
   );
 }
